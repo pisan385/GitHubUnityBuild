@@ -29,8 +29,8 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: src/Library
-          key: Library-${{ matrix.targetPlatform }}
-          restore-keys: Library-
+          key: Library
+          restore-keys: Library
 
       # Build
       - name: Build project
@@ -39,7 +39,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           # No compression for WebGL Builds 
-          customParameters: -webGLCompressionFormat 0
+          customParameters: -webGLCompressionFormat 1
           projectPath: src
           targetPlatform: ${{ matrix.targetPlatform }}
 
