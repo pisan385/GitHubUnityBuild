@@ -39,7 +39,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           # No compression for WebGL Builds 
-          buildMethod: PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled
+          buildMethod: PlayerSettings.WebGL.CompressionFormat = WebGLCompressionFormat.Disabled
           projectPath: src
           targetPlatform: ${{ matrix.targetPlatform }}
 
