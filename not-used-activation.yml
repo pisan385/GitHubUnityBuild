@@ -1,0 +1,25 @@
+# Based on https://game.ci/docs/github/activation
+
+# Download the manual activation file that now appeared as an artifact.
+# Visit license.unity3d.com and upload it.
+# You should now receive your license file (Unity_v20XX.x.ulf) as a download.
+# Open Github > <Your repository> > Settings > Secrets.
+# Create a secret called UNITY_LICENSE and copy the contents your license file into it.
+
+name: Acquire activation file
+on: [push]
+jobs:
+  activation:
+    name: Request manual activation file 🔑
+    runs-on: ubuntu-latest
+    steps:
+      # Request manual activation file
+      - name: Request manual activation file
+        id: getManualLicenseFile
+        uses: game-ci/unity-request-activation-file@v2
+        # Upload artifact (Unity_v20XX.X.XXXX.alf)
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
