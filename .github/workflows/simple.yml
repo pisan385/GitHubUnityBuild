@@ -7,6 +7,17 @@ jobs:
   build:
     name: Build my project ✨
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          # - StandaloneWindows # Build a Windows standalone.
+          # - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          # - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          # - iOS # Build an iOS player.
+          # - Android # Build an Android .apk standalone app.
+          - WebGL # WebGL.
     steps:
       # Checkout
       - name: Checkout repository
@@ -18,17 +29,8 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: src/Library
-          key: Library
-          restore-keys: Library
-
-      # Test
-#       - name: Run tests
-#         uses: game-ci/unity-test-runner@v2
-#         env:
-#           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-#         with:
-#           projectPath: src
-#           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
 
       # Build
       - name: Build project
@@ -37,13 +39,13 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           # No compression for WebGL Builds 
-          customParameters: -webGLCompressionFormat 2
+          customParameters: -webGLCompressionFormat 0
           projectPath: src
-          targetPlatform: WebGL
+          targetPlatform: ${{ matrix.targetPlatform }}
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Build-WebGL
-          path: build/WebGL
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
 
