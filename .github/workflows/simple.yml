@@ -35,7 +35,7 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          projectPath: src
+          projectPath: src/Library
           targetPlatform: WebGL
 
       # Output
