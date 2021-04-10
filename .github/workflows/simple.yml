@@ -39,7 +39,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           # No compression for WebGL Builds 
-          customParameters: -webGLCompressionFormat 1
+          customParameters: -webGLCompressionFormat 1 -webGLDecompressionFallback 1
           projectPath: src
           targetPlatform: ${{ matrix.targetPlatform }}
 
