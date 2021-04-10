@@ -22,13 +22,13 @@ jobs:
           restore-keys: Library
 
       # Test
-      - name: Run tests
-        uses: game-ci/unity-test-runner@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          projectPath: src
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Run tests
+#         uses: game-ci/unity-test-runner@v2
+#         env:
+#           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+#         with:
+#           projectPath: src
+#           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       # Build
       - name: Build project
