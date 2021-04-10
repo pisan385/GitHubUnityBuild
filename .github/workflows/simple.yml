@@ -36,6 +36,8 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
+          # No compression for WebGL Builds 
+          customParameters: -webGLCompressionFormat 2
           projectPath: src
           targetPlatform: WebGL
 
