@@ -24,35 +24,36 @@ jobs:
         uses: actions/checkout@v2
         with:
           lfs: true
+        run:
+        - echo "webGLCompressionFormat must be 2 to disable compression"
+        - grep webGLCompressionFormat ProjectSettings/ProjectSettings.asset
 
-      # Cache
-      - name: Work the Cache
-        uses: actions/cache@v2
-        with:
-          path: src/Library
-          key: Library-MyProjectName-${{ matrix.targetPlatform }}
-          restore-keys: |
-            Library-MyProjectName-
-            Library-
+      # # Cache
+      # - name: Work the Cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: src/Library
+      #     key: Library-MyProjectName-${{ matrix.targetPlatform }}
+      #     restore-keys: |
+      #       Library-MyProjectName-
+      #       Library-
 
-      # Build
-      - name: Game-CI Unity Builder
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          # No compression for WebGL Builds 
-          buildMethod: PlayerSettings.WebGL.compressionFormat=2
-          projectPath: src
-          targetPlatform: ${{ matrix.targetPlatform }}
-        id: myBuildStep
-          run: echo 'Project Version: ${{ steps.myBuildStep.outputs.buildVersion }}'
+      # # Build
+      # - name: Game-CI Unity Builder
+      #   uses: game-ci/unity-builder@v2
+      #   env:
+      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      #   with:
+      #     projectPath: src
+      #     targetPlatform: ${{ matrix.targetPlatform }}
+      #   id: myBuildStep
+      #     run: echo 'Project Version: ${{ steps.myBuildStep.outputs.buildVersion }}'
 
-      # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+      # # Output
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: Build-${{ matrix.targetPlatform }}
+      #     path: build/${{ matrix.targetPlatform }}
 
 
 # Edit a yml file to get a new activation file for Unity license
