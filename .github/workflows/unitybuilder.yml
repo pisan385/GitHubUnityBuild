@@ -1,7 +1,8 @@
 # Based on https://game.ci/docs/github/getting-started
 name: Unity Build Actions 🏭
 
-on: [push]
+on:
+    workflow_dispatch:
 
 jobs:
   build:
