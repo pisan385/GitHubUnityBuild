@@ -7,10 +7,12 @@
 # Create a secret called UNITY_LICENSE and copy the contents your license file into it.
 
 name: Acquire activation file
-push:
-    paths:
-    # Only run when a yml file is edited
-    - '**.yml'
+
+on:
+  push:
+      paths:
+      # Only run when a yml file is edited
+      - '**.yml'
 
 jobs:
   activation:
