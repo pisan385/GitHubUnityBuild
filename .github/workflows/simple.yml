@@ -28,15 +28,15 @@ jobs:
       #     - run: echo "webGLCompressionFormat must be 2 to disable compression"
       #     - run: grep webGLCompressionFormat ProjectSettings/ProjectSettings.asset
 
-      # # Cache
-      # - name: Work the Cache
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: src/Library
-      #     key: Library-MyProjectName-${{ matrix.targetPlatform }}
-      #     restore-keys: |
-      #       Library-MyProjectName-
-      #       Library-
+      # Cache
+      - name: Work the Cache
+        uses: actions/cache@v2
+        with:
+          path: src/Library
+          key: Library-MyProjectName-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-MyProjectName-
+            Library-
 
       # # Build
       # - name: Game-CI Unity Builder
