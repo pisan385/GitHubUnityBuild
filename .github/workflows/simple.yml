@@ -30,7 +30,7 @@ jobs:
         with:
           path: src/Library
           key: Library
-          restore-keys: Library
+          # restore-keys: Library
 
       # Build
       - name: Build project
@@ -39,7 +39,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           # No compression for WebGL Builds 
-          buildMethod: PlayerSettings.WebGL.CompressionFormat=WebGLCompressionFormat.Disabled
+          buildMethod: PlayerSettings.WebGL.compressionFormat=WebGLCompressionFormat.Disabled
           projectPath: src
           targetPlatform: ${{ matrix.targetPlatform }}
 
