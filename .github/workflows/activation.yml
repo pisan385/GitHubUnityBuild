@@ -9,10 +9,7 @@
 name: Acquire activation file 🔑
 
 on:
-  push:
-      paths:
-      # Only run when a yml file is edited
-      - '**.yml'
+    workflow_dispatch:
 
 jobs:
   activation:
