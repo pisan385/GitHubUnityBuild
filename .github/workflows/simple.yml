@@ -25,8 +25,8 @@ jobs:
         with:
           lfs: true
       - name: Check compression
-          run: echo "webGLCompressionFormat must be 2 to disable compression"
-          run: grep webGLCompressionFormat ProjectSettings/ProjectSettings.asset
+          - run: echo "webGLCompressionFormat must be 2 to disable compression"
+          - run: grep webGLCompressionFormat ProjectSettings/ProjectSettings.asset
 
       # # Cache
       # - name: Work the Cache
