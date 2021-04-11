@@ -46,9 +46,7 @@ jobs:
         with:
           projectPath: src
           targetPlatform: ${{ matrix.targetPlatform }}
-        id: myBuildStep
-          run: echo 'Project Version: ${{ steps.myBuildStep.outputs.buildVersion }}'
-
+      
       # Output
       - uses: actions/upload-artifact@v2
         with:
