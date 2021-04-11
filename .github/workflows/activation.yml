@@ -6,7 +6,7 @@
 # Open Github > <Your repository> > Settings > Secrets.
 # Create a secret called UNITY_LICENSE and copy the contents your license file into it.
 
-name: Acquire activation file
+name: Acquire activation file 🔑
 
 on:
   push:
