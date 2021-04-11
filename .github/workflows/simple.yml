@@ -5,7 +5,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Build my project ✨
+    name: Build my project
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -49,3 +49,33 @@ jobs:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
 
+
+# Edit a yml file to get a new activation file for Unity license
+
+name: Activation key
+
+on:
+  push:
+    paths:
+    # Only run when a yml file is edited
+    - '**.yml'
+jobs:
+  acquire-activation:
+      name: Acquire activation file
+      on:
+
+        jobs:
+          activation:
+            name: Request manual activation file 🔑
+            runs-on: ubuntu-latest
+            steps:
+              # Request manual activation file
+              - name: Request manual activation file
+                id: getManualLicenseFile
+                uses: game-ci/unity-request-activation-file@v2
+                # Upload artifact (Unity_v20XX.X.XXXX.alf)
+              - name: Expose as artifact
+                uses: actions/upload-artifact@v1
+                with:
+                  name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+                  path: ${{ steps.getManualLicenseFile.outputs.filePath }}
