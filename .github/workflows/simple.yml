@@ -38,50 +38,19 @@ jobs:
             Library-MyProjectName-
             Library-
 
-      # # Build
-      # - name: Game-CI Unity Builder
-      #   uses: game-ci/unity-builder@v2
-      #   env:
-      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      #   with:
-      #     projectPath: src
-      #     targetPlatform: ${{ matrix.targetPlatform }}
-      #   id: myBuildStep
-      #     run: echo 'Project Version: ${{ steps.myBuildStep.outputs.buildVersion }}'
+      # Build
+      - name: Game-CI Unity Builder
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: src
+          targetPlatform: ${{ matrix.targetPlatform }}
+        id: myBuildStep
+          run: echo 'Project Version: ${{ steps.myBuildStep.outputs.buildVersion }}'
 
-      # # Output
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: Build-${{ matrix.targetPlatform }}
-      #     path: build/${{ matrix.targetPlatform }}
-
-
-# Edit a yml file to get a new activation file for Unity license
-
-# name: Activation
-
-# on:
-#   push:
-#     paths:
-#     # Only run when a yml file is edited
-#     - '**.yml'
-#   jobs:
-#     acquire-activation:
-#         name: Acquire activation file
-#         on:
-
-#           jobs:
-#             activation:
-#               name: Request manual activation file 🔑
-#               runs-on: ubuntu-latest
-#               steps:
-#                 # Request manual activation file
-#                 - name: Request manual activation file
-#                   id: getManualLicenseFile
-#                   uses: game-ci/unity-request-activation-file@v2
-#                   # Upload artifact (Unity_v20XX.X.XXXX.alf)
-#                 - name: Expose as artifact
-#                   uses: actions/upload-artifact@v1
-#                   with:
-#                     name: ${{ steps.getManualLicenseFile.outputs.filePath }}
-#                     path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}

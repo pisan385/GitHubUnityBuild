@@ -7,7 +7,11 @@
 # Create a secret called UNITY_LICENSE and copy the contents your license file into it.
 
 name: Acquire activation file
-on: [push]
+push:
+    paths:
+    # Only run when a yml file is edited
+    - '**.yml'
+
 jobs:
   activation:
     name: Request manual activation file 🔑
@@ -23,3 +27,4 @@ jobs:
         with:
           name: ${{ steps.getManualLicenseFile.outputs.filePath }}
           path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+
