@@ -24,9 +24,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           lfs: true
-        run:
-        - echo "webGLCompressionFormat must be 2 to disable compression"
-        - grep webGLCompressionFormat ProjectSettings/ProjectSettings.asset
+      - name: Check compression
+          run: echo "webGLCompressionFormat must be 2 to disable compression"
+          run: grep webGLCompressionFormat ProjectSettings/ProjectSettings.asset
 
       # # Cache
       # - name: Work the Cache
