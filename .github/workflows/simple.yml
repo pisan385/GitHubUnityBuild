@@ -58,6 +58,8 @@ jobs:
 
 # Edit a yml file to get a new activation file for Unity license
 
+name: Activation
+
 on:
   push:
     paths:
